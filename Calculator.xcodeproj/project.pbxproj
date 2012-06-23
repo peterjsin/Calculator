@@ -12,9 +12,10 @@
 		770E166C1595561900AC2201 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 770E166B1595561900AC2201 /* CoreGraphics.framework */; };
 		770E16721595561900AC2201 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 770E16701595561900AC2201 /* InfoPlist.strings */; };
 		770E16741595561900AC2201 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 770E16731595561900AC2201 /* main.m */; };
-		770E16781595561900AC2201 /* CalculatorAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 770E16771595561900AC2201 /* CalculatorAppDelegate.m */; };
-		770E167B1595561900AC2201 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 770E16791595561900AC2201 /* MainStoryboard.storyboard */; };
-		770E167E1595561900AC2201 /* CalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 770E167D1595561900AC2201 /* CalculatorViewController.m */; };
+		770E168915955A4D00AC2201 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 770E168815955A4D00AC2201 /* MainStoryboard.storyboard */; };
+		770E168C15955A8900AC2201 /* CalculatorAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 770E168B15955A8900AC2201 /* CalculatorAppDelegate.m */; };
+		770E168F15955A9E00AC2201 /* CalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 770E168E15955A9E00AC2201 /* CalculatorViewController.m */; };
+		770E169215955AA900AC2201 /* CalculatorBrain.m in Sources */ = {isa = PBXBuildFile; fileRef = 770E169115955AA900AC2201 /* CalculatorBrain.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,11 +27,13 @@
 		770E16711595561900AC2201 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		770E16731595561900AC2201 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		770E16751595561900AC2201 /* Calculator-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Calculator-Prefix.pch"; sourceTree = "<group>"; };
-		770E16761595561900AC2201 /* CalculatorAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalculatorAppDelegate.h; sourceTree = "<group>"; };
-		770E16771595561900AC2201 /* CalculatorAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalculatorAppDelegate.m; sourceTree = "<group>"; };
-		770E167A1595561900AC2201 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		770E167C1595561900AC2201 /* CalculatorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalculatorViewController.h; sourceTree = "<group>"; };
-		770E167D1595561900AC2201 /* CalculatorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalculatorViewController.m; sourceTree = "<group>"; };
+		770E168815955A4D00AC2201 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		770E168A15955A8900AC2201 /* CalculatorAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorAppDelegate.h; sourceTree = "<group>"; };
+		770E168B15955A8900AC2201 /* CalculatorAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorAppDelegate.m; sourceTree = "<group>"; };
+		770E168D15955A9E00AC2201 /* CalculatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorViewController.h; sourceTree = "<group>"; };
+		770E168E15955A9E00AC2201 /* CalculatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorViewController.m; sourceTree = "<group>"; };
+		770E169015955AA900AC2201 /* CalculatorBrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorBrain.h; sourceTree = "<group>"; };
+		770E169115955AA900AC2201 /* CalculatorBrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorBrain.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,11 +80,13 @@
 		770E166D1595561900AC2201 /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
-				770E16761595561900AC2201 /* CalculatorAppDelegate.h */,
-				770E16771595561900AC2201 /* CalculatorAppDelegate.m */,
-				770E16791595561900AC2201 /* MainStoryboard.storyboard */,
-				770E167C1595561900AC2201 /* CalculatorViewController.h */,
-				770E167D1595561900AC2201 /* CalculatorViewController.m */,
+				770E168A15955A8900AC2201 /* CalculatorAppDelegate.h */,
+				770E168B15955A8900AC2201 /* CalculatorAppDelegate.m */,
+				770E168815955A4D00AC2201 /* MainStoryboard.storyboard */,
+				770E169015955AA900AC2201 /* CalculatorBrain.h */,
+				770E169115955AA900AC2201 /* CalculatorBrain.m */,
+				770E168D15955A9E00AC2201 /* CalculatorViewController.h */,
+				770E168E15955A9E00AC2201 /* CalculatorViewController.m */,
 				770E166E1595561900AC2201 /* Supporting Files */,
 			);
 			path = Calculator;
@@ -150,7 +155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				770E16721595561900AC2201 /* InfoPlist.strings in Resources */,
-				770E167B1595561900AC2201 /* MainStoryboard.storyboard in Resources */,
+				770E168915955A4D00AC2201 /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,8 +167,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				770E16741595561900AC2201 /* main.m in Sources */,
-				770E16781595561900AC2201 /* CalculatorAppDelegate.m in Sources */,
-				770E167E1595561900AC2201 /* CalculatorViewController.m in Sources */,
+				770E168C15955A8900AC2201 /* CalculatorAppDelegate.m in Sources */,
+				770E168F15955A9E00AC2201 /* CalculatorViewController.m in Sources */,
+				770E169215955AA900AC2201 /* CalculatorBrain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,14 +182,6 @@
 				770E16711595561900AC2201 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		770E16791595561900AC2201 /* MainStoryboard.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				770E167A1595561900AC2201 /* en */,
-			);
-			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
