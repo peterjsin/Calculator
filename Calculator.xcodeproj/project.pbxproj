@@ -35,7 +35,7 @@
 		770E168E15955A9E00AC2201 /* CalculatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorViewController.m; sourceTree = "<group>"; };
 		770E169015955AA900AC2201 /* CalculatorBrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorBrain.h; sourceTree = "<group>"; };
 		770E169115955AA900AC2201 /* CalculatorBrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorBrain.m; sourceTree = "<group>"; };
-		77B98A6F15980F3C0007FC1A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		77B98A6F15980F3C0007FC1A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = Calculator/README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +55,7 @@
 		770E16581595561900AC2201 = {
 			isa = PBXGroup;
 			children = (
+				77B98A6F15980F3C0007FC1A /* README.md */,
 				770E166D1595561900AC2201 /* Calculator */,
 				770E16661595561900AC2201 /* Frameworks */,
 				770E16641595561900AC2201 /* Products */,
@@ -90,7 +91,6 @@
 				770E168D15955A9E00AC2201 /* CalculatorViewController.h */,
 				770E168E15955A9E00AC2201 /* CalculatorViewController.m */,
 				770E166E1595561900AC2201 /* Supporting Files */,
-				77B98A6F15980F3C0007FC1A /* README.md */,
 			);
 			path = Calculator;
 			sourceTree = "<group>";
