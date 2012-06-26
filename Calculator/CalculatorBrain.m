@@ -16,12 +16,17 @@
 
 @synthesize operandStack = _operandStack;
 
+
 - (NSMutableArray *)operandStack
 {
     if (!_operandStack) {
         _operandStack = [[NSMutableArray alloc] init];
     }
     return _operandStack;
+}
+
+- (NSString *)description {
+    return [self.operandStack description];
 }
 
 - (void)pushOperand:(double)operand
