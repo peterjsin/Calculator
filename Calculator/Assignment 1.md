@@ -7,8 +7,8 @@
 2. Add four operations
     * ~~sin~~
     * ~~cos~~
-    * pi
-    * sqrt
+    * ~~pi~~
+    * ~~sqrt~~
 
 ~~*BUG*: X Y Z + + --> X i.e.
        4 3 2 + + _should_ be 2+3 = 5 + 4 = 9, but is 4
