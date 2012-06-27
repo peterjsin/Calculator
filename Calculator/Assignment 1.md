@@ -1,3 +1,5 @@
+# Required Tasks
+
 1. ~~Walk-through~~
 
 2. ~~Floating Point Numbers i.e. decimal point~~
@@ -21,6 +23,16 @@
 6. ~~Protect against invalid operation~~
 
 7. ~~Avoid problems in Evaluation section~~
+
+---
+
+# Extra Credit
+
+1. ~~Backspace~~
+
+2. Put an equals sign at end of the history label.
+
+3. +/- Operator.
 
 ---
 ~~*BUG*: X Y Z + + --> X i.e.  
