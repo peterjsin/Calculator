@@ -62,6 +62,8 @@
         result = sin([self popOperand]);
     } else if ([operation isEqualToString:@"cos"]) {
         result = cos([self popOperand]);
+    } else if ([operation isEqualToString:@"π"]) {
+        //TODO
     }
 
 
