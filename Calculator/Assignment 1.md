@@ -1,22 +1,26 @@
-1. ~~Floating Point Numbers i.e. decimal point~~
+1. ~~Walk-through~~
+
+2. ~~Floating Point Numbers i.e. decimal point~~
     * decimal pressed
     * has decimal?
         * YES - do nothing
         * NO - append decimal
         
-2. Add four operations
+3. Add four operations
     * ~~sin~~
     * ~~cos~~
     * ~~pi~~
     * ~~sqrt~~
 
-3. Add list of arguments sent to the brain
+4. Add list of arguments sent to the brain
 
-4. Clear button
+5. Clear button
     * ~~clear display in View~~
     * ~~empty stack in Model~~
     * ~~reset state in Controller~~
-5. 
+6. ~~Protect against invalid operation~~
+
+7. ~~Avoid problems in Evaluation section~~
 
 ---
 ~~*BUG*: X Y Z + + --> X i.e.  

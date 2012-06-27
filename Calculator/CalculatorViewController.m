@@ -42,6 +42,16 @@
     }
 }
 
+- (IBAction)deletePressed {
+    int length = self.display.text.length;
+    if (length > 1) {
+        length--;
+        self.display.text = [self.display.text substringToIndex:length];
+    } else {
+        self.display.text = @"0";
+    }
+}
+
 
 - (IBAction)enterPressed 
 {
