@@ -32,6 +32,7 @@
 - (void)pushOperand:(double)operand
 {
     [self.operandStack addObject:[NSNumber numberWithDouble:operand]];
+    NSLog(@"%@", self);
 }
 
 - (double)popOperand
@@ -46,8 +47,6 @@
 - (double)performOperation:(NSString *)operation 
 {
     double result = 0;
-    
-    
     if ([operation isEqualToString:@"+"]) {
         result = [self popOperand] + [self popOperand];
     } else if ([operation isEqualToString:@"*"]) {
@@ -63,10 +62,9 @@
     } else if ([operation isEqualToString:@"cos"]) {
         result = cos([self popOperand]);
     } else if ([operation isEqualToString:@"π"]) {
-        //TODO
+        [self pushOperand:M_PI];
+        result = M_PI;
     }
-
-
     return result;
 }
 
