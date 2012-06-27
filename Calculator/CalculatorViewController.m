@@ -44,14 +44,22 @@
     self.userIsInTheMiddleOfEnteringANumber = NO;
 }
 
-- (IBAction)operationPressed:(UIButton *)sender {
+- (IBAction)operationPressed:(UIButton *)sender
+{
     if (self.userIsInTheMiddleOfEnteringANumber) {
         [self enterPressed];
     }
     NSString *operation = [sender currentTitle];
     double result = [self.brain performOperation:operation];
     self.display.text = [NSString stringWithFormat:@"%g", result];
+}
 
+- (IBAction)decimalPressed
+{ 
+    if ( ([self.display.text rangeOfString:@"."]).location == NSNotFound ) {
+        self.display.text = [self.display.text stringByAppendingFormat:@"."];
+        self.userIsInTheMiddleOfEnteringANumber = YES;
+    }
 }
 
 @end
