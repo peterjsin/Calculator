@@ -15,9 +15,8 @@
 @end
 
 @implementation CalculatorViewController
-
-
 @synthesize display = _display;
+@synthesize historyDisplay = _historyDisplay;
 @synthesize userIsInTheMiddleOfEnteringANumber = _userIsInTheMiddleOfEnteringANumber;
 @synthesize brain = _brain;
 
@@ -25,6 +24,11 @@
 {
     if (!_brain) _brain = [[CalculatorBrain alloc] init];
     return _brain;
+}
+
+- (void)updateHistoryDisplay:(NSString *)stringSentToBrain
+{
+//    self.historyDisplay.text = [self.historyDisplay.text stringByAppendingFormat:@"%@ ", stringSentToBrain];
 }
 
 - (IBAction)digitPressed:(UIButton *)sender
@@ -38,9 +42,11 @@
     }
 }
 
+
 - (IBAction)enterPressed 
 {
     [self.brain pushOperand:[self.display.text doubleValue]];
+    [self updateHistoryDisplay:self.display.text];
     self.userIsInTheMiddleOfEnteringANumber = NO;
 }
 
@@ -51,8 +57,8 @@
     }
     NSString *operation = [sender currentTitle];
     double result = [self.brain performOperation:operation];
+    [self updateHistoryDisplay:operation];
     self.display.text = [NSString stringWithFormat:@"%g", result];
-    [self enterPressed];
 }
 
 - (IBAction)decimalPressed
@@ -61,6 +67,15 @@
         self.display.text = [self.display.text stringByAppendingFormat:@"."];
         self.userIsInTheMiddleOfEnteringANumber = YES;
     }
+}
+
+- (IBAction)piPressed
+{   
+    if (self.userIsInTheMiddleOfEnteringANumber) {
+        [self enterPressed];
+    }
+    [self.brain performOperation:@"π"];
+    self.display.text = [NSString stringWithFormat:@"%g", M_PI];
 }
 
 @end
