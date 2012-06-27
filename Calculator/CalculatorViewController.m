@@ -28,7 +28,7 @@
 
 - (void)updateHistoryDisplay:(NSString *)stringSentToBrain
 {
-//    self.historyDisplay.text = [self.historyDisplay.text stringByAppendingFormat:@"%@ ", stringSentToBrain];
+    self.historyDisplay.text = [self.historyDisplay.text stringByAppendingFormat:@"%@ ", stringSentToBrain];
 }
 
 - (IBAction)digitPressed:(UIButton *)sender
@@ -77,5 +77,12 @@
     [self.brain performOperation:@"π"];
     self.display.text = [NSString stringWithFormat:@"%g", M_PI];
 }
+
+- (IBAction)clearPressed {
+    [self.brain clear];
+    [self updateHistoryDisplay:@"C"];
+    self.userIsInTheMiddleOfEnteringANumber = NO;
+    self.display.text = @"0";
+}    
 
 @end

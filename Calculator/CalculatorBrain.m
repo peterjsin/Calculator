@@ -25,6 +25,11 @@
     return _operandStack;
 }
 
+- (void)clear
+{
+    self.operandStack = nil;
+}
+
 - (NSString *)description {
     return [self.operandStack description];
 }
@@ -72,5 +77,7 @@
     }
     return result;
 }
+
+
 
 @end
