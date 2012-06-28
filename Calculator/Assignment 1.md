@@ -8,15 +8,15 @@
         * YES - do nothing
         * NO - append decimal
         
-3. Add four operations
+3. ~~Add four operations~~
     * ~~sin~~
     * ~~cos~~
     * ~~pi~~
     * ~~sqrt~~
 
-4. Add list of arguments sent to the brain
+4. ~~Add list of arguments sent to the brain~~
 
-5. Clear button
+5. ~~Clear button~~
     * ~~clear display in View~~
     * ~~empty stack in Model~~
     * ~~reset state in Controller~~
@@ -30,9 +30,9 @@
 
 1. ~~Backspace~~
 
-2. Put an equals sign at end of the history label.
+2. ~~Put an equals sign at end of the history label.~~
 
-3. +/- Operator.
+3. ~~+/- Operator.~~
     * Is entering number?
 
 ---
