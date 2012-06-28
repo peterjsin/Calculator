@@ -33,6 +33,7 @@
 2. Put an equals sign at end of the history label.
 
 3. +/- Operator.
+    * Is entering number?
 
 ---
 ~~*BUG*: X Y Z + + --> X i.e.  

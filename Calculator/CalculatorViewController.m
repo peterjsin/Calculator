@@ -67,7 +67,8 @@
     }
     NSString *operation = [sender currentTitle];
     double result = [self.brain performOperation:operation];
-    [self updateHistoryDisplay:operation];
+    self.historyDisplay.text = [self.historyDisplay.text stringByReplacingOccurrencesOfString:@"=" withString:@""];
+    [self updateHistoryDisplay:[operation stringByAppendingString:@" ="]];
     self.display.text = [NSString stringWithFormat:@"%g", result];
 }
 
@@ -93,6 +94,13 @@
     [self updateHistoryDisplay:@"C"];
     self.userIsInTheMiddleOfEnteringANumber = NO;
     self.display.text = @"0";
-}    
+}  
+
+- (IBAction)negatePressed {
+    self.display.text = [NSString stringWithFormat:@"%g", [self.display.text doubleValue] * -1];
+    if (!self.userIsInTheMiddleOfEnteringANumber) {
+        [self enterPressed];
+    }
+}
 
 @end

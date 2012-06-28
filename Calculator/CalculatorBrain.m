@@ -37,7 +37,6 @@
 - (void)pushOperand:(double)operand
 {
     [self.operandStack addObject:[NSNumber numberWithDouble:operand]];
-    NSLog(@"%@", self);
 }
 
 - (double)popOperand
