@@ -16,10 +16,9 @@
 
 @implementation CalculatorViewController
 
-
+@synthesize brain = _brain;
 @synthesize display = _display;
 @synthesize userIsInTheMiddleOfEnteringANumber = _userIsInTheMiddleOfEnteringANumber;
-@synthesize brain = _brain;
 
 - (CalculatorBrain *) brain
 {
@@ -35,6 +34,16 @@
     } else {
         self.display.text = digit;
         self.userIsInTheMiddleOfEnteringANumber = YES;
+    }
+}
+
+- (IBAction)deletePressed {
+    int length = self.display.text.length;
+    if (length > 1) {
+        length--;
+        self.display.text = [self.display.text substringToIndex:length];
+    } else {
+        self.display.text = @"0";
     }
 }
 
