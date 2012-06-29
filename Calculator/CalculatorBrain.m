@@ -27,7 +27,7 @@
 
 - (void)clear
 {
-    self.operandStack = nil;
+    [self.operandStack removeAllObjects];
 }
 
 - (NSString *)description {
