@@ -3,7 +3,7 @@
 //  Calculator
 //
 //  Created by Peter Siniawski on 6/21/2012.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 peterjsin@gmail.com. All rights reserved.
 //
 
 #import "CalculatorViewController.h"
@@ -28,9 +28,10 @@
 
 - (void)updateHistoryDisplay:(NSString *)stringSentToBrain
 {
-    self.historyDisplay.text = [self.historyDisplay.text stringByAppendingFormat:@"%@ ", stringSentToBrain];
+    self.historyDisplay.text = [self.historyDisplay.text stringByAppendingFormat:@" %@", stringSentToBrain];
 }
 
+/*  Appends or places a digit on the display */
 - (IBAction)digitPressed:(UIButton *)sender
 {
     NSString *digit = [sender currentTitle];
@@ -42,7 +43,10 @@
     }
 }
 
-- (IBAction)deletePressed {
+/*  Trims the last character off of the display unless there is only one. If only one, puts a zero */
+- (IBAction)deletePressed
+{
+
     int length = self.display.text.length;
     if (length > 1) {
         length--;
@@ -52,14 +56,15 @@
     }
 }
 
-
-- (IBAction)enterPressed 
+/*  Pushes the display onto the stack */
+- (IBAction)enterPressed
 {
     [self.brain pushOperand:[self.display.text doubleValue]];
     [self updateHistoryDisplay:self.display.text];
     self.userIsInTheMiddleOfEnteringANumber = NO;
 }
 
+/*  Sends performOperation. Updates both display and historyDisplay */
 - (IBAction)operationPressed:(UIButton *)sender
 {
     if (self.userIsInTheMiddleOfEnteringANumber) {
@@ -72,6 +77,7 @@
     self.display.text = [NSString stringWithFormat:@"%g", result];
 }
 
+/*  Puts one and only one decimal onto the display */
 - (IBAction)decimalPressed
 { 
     if ( ([self.display.text rangeOfString:@"."]).location == NSNotFound ) {
@@ -80,6 +86,7 @@
     }
 }
 
+/* Push M_PI onto the stack. Put M_PI onto the display */
 - (IBAction)piPressed
 {   
     if (self.userIsInTheMiddleOfEnteringANumber) {
@@ -89,13 +96,19 @@
     self.display.text = [NSString stringWithFormat:@"%g", M_PI];
 }
 
+/* First time: Clears memory and display. Subsequent presses also clear historyDisplay */
 - (IBAction)clearPressed {
+    if ([self.historyDisplay.text hasSuffix:@" C"]) {
+        self.historyDisplay.text = @"";
+    } else {
+        [self updateHistoryDisplay:@"C"];
+    }        
     [self.brain clear];
-    [self updateHistoryDisplay:@"C"];
     self.userIsInTheMiddleOfEnteringANumber = NO;
     self.display.text = @"0";
 }  
 
+/* Multiplies the display by -1 and puts it onto the display */
 - (IBAction)negatePressed {
     self.display.text = [NSString stringWithFormat:@"%g", [self.display.text doubleValue] * -1];
     if (!self.userIsInTheMiddleOfEnteringANumber) {
