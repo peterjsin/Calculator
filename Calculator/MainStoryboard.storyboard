@@ -378,6 +378,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="decimalButton" destination="3aJ-yL-YeD" id="hrX-ht-DHU"/>
                         <outlet property="display" destination="0hK-qG-sQH" id="7bN-s0-pua"/>
                         <outlet property="historyDisplay" destination="Wl3-bp-zeC" id="T5M-jo-WIq"/>
                     </connections>
@@ -386,15 +387,6 @@
             <point key="canvasLocation" x="-163" y="-3"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="CalculatorViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CalculatorViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="display" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="historyDisplay" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

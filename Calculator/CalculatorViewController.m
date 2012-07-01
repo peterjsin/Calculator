@@ -46,7 +46,6 @@
 /*  Trims the last character off of the display unless there is only one. If only one, puts a zero */
 - (IBAction)deletePressed
 {
-
     int length = self.display.text.length;
     if (length > 1) {
         length--;
@@ -96,9 +95,9 @@
     self.display.text = [NSString stringWithFormat:@"%g", M_PI];
 }
 
-/* First time: Clears memory and display. Subsequent presses also clear historyDisplay */
+/* First time: Clears memory and display. A second press also clears historyDisplay */
 - (IBAction)clearPressed {
-    if ([self.historyDisplay.text hasSuffix:@" C"]) {
+    if ([self.historyDisplay.text hasSuffix:@"C"]) {
         self.historyDisplay.text = @"";
     } else {
         [self updateHistoryDisplay:@"C"];
@@ -110,9 +109,9 @@
 
 /* Multiplies the display by -1 and puts it onto the display */
 - (IBAction)negatePressed {
-    self.display.text = [NSString stringWithFormat:@"%g", [self.display.text doubleValue] * -1];
-    if (!self.userIsInTheMiddleOfEnteringANumber) {
-        [self enterPressed];
+    if (![self.display.text isEqualToString:@"0"]) {
+        self.display.text = [NSString stringWithFormat:@"%g", [self.display.text doubleValue] * -1];
+        if (!self.userIsInTheMiddleOfEnteringANumber) [self enterPressed];
     }
 }
 
