@@ -16,7 +16,6 @@
 		770E168C15955A8900AC2201 /* CalculatorAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 770E168B15955A8900AC2201 /* CalculatorAppDelegate.m */; };
 		770E168F15955A9E00AC2201 /* CalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 770E168E15955A9E00AC2201 /* CalculatorViewController.m */; };
 		770E169215955AA900AC2201 /* CalculatorBrain.m in Sources */ = {isa = PBXBuildFile; fileRef = 770E169115955AA900AC2201 /* CalculatorBrain.m */; };
-		778267B5159A84430016789C /* Assignment 1.md in Resources */ = {isa = PBXBuildFile; fileRef = 778267B4159A84430016789C /* Assignment 1.md */; };
 		77B98A7015980F3C0007FC1A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 77B98A6F15980F3C0007FC1A /* README.md */; };
 /* End PBXBuildFile section */
 
@@ -36,7 +35,6 @@
 		770E168E15955A9E00AC2201 /* CalculatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorViewController.m; sourceTree = "<group>"; };
 		770E169015955AA900AC2201 /* CalculatorBrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorBrain.h; sourceTree = "<group>"; };
 		770E169115955AA900AC2201 /* CalculatorBrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorBrain.m; sourceTree = "<group>"; };
-		778267B4159A84430016789C /* Assignment 1.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "Assignment 1.md"; path = "Calculator/Assignment 1.md"; sourceTree = "<group>"; };
 		77B98A6F15980F3C0007FC1A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = Calculator/README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -58,7 +56,6 @@
 			isa = PBXGroup;
 			children = (
 				77B98A6F15980F3C0007FC1A /* README.md */,
-				778267B4159A84430016789C /* Assignment 1.md */,
 				770E166D1595561900AC2201 /* Calculator */,
 				770E16661595561900AC2201 /* Frameworks */,
 				770E16641595561900AC2201 /* Products */,
@@ -163,7 +160,6 @@
 				770E16721595561900AC2201 /* InfoPlist.strings in Resources */,
 				770E168915955A4D00AC2201 /* MainStoryboard.storyboard in Resources */,
 				77B98A7015980F3C0007FC1A /* README.md in Resources */,
-				778267B5159A84430016789C /* Assignment 1.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
