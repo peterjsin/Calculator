@@ -378,7 +378,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="decimalButton" destination="3aJ-yL-YeD" id="hrX-ht-DHU"/>
                         <outlet property="display" destination="0hK-qG-sQH" id="7bN-s0-pua"/>
                         <outlet property="historyDisplay" destination="Wl3-bp-zeC" id="T5M-jo-WIq"/>
                     </connections>
