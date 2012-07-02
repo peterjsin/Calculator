@@ -3,7 +3,7 @@
 //  Calculator
 //
 //  Created by Peter Siniawski on 6/21/2012.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 peterjsin@gmail.com. All rights reserved.
 //
 
 #import "CalculatorBrain.h"
@@ -16,12 +16,22 @@
 
 @synthesize operandStack = _operandStack;
 
+
 - (NSMutableArray *)operandStack
 {
     if (!_operandStack) {
         _operandStack = [[NSMutableArray alloc] init];
     }
     return _operandStack;
+}
+
+- (void)clear
+{
+    [self.operandStack removeAllObjects];
+}
+
+- (NSString *)description {
+    return [self.operandStack description];
 }
 
 - (void)pushOperand:(double)operand
@@ -50,7 +60,24 @@
         result = [self popOperand] - subtrahend;
     } else if ([operation isEqualToString:@"/"]) {
         double divisor = [self popOperand];
-        result = [self popOperand] / divisor;
+        if (divisor != 0) {
+            result = [self popOperand] / divisor;
+        }
+    } else if ([operation isEqualToString:@"sin"]) {
+        result = sin([self popOperand]);
+    } else if ([operation isEqualToString:@"cos"]) {
+        result = cos([self popOperand]);
+    } else if ([operation isEqualToString:@"sqrt"]){
+        double radicand = [self popOperand];
+        if (radicand >= 0) {
+            result = sqrt(radicand);
+        }
+    } else if ([operation isEqualToString:@"π"]) {
+        [self pushOperand:M_PI];
+    }
+    
+    if (![operation isEqualToString:@"π"]) {
+        [self pushOperand:result];
     }
     return result;
 }

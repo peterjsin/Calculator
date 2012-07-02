@@ -3,7 +3,7 @@
 //  Calculator
 //
 //  Created by Peter Siniawski on 6/21/2012.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 peterjsin@gmail.com. All rights reserved.
 //
 
 #import "CalculatorViewController.h"
@@ -18,6 +18,7 @@
 
 @synthesize brain = _brain;
 @synthesize display = _display;
+@synthesize historyDisplay = _historyDisplay;
 @synthesize userIsInTheMiddleOfEnteringANumber = _userIsInTheMiddleOfEnteringANumber;
 
 - (CalculatorBrain *) brain
@@ -26,12 +27,18 @@
     return _brain;
 }
 
+- (void)updateHistoryDisplay:(NSString *)stringSentToBrain
+{
+    self.historyDisplay.text = [self.historyDisplay.text stringByAppendingFormat:@" %@", stringSentToBrain];
+}
+
+/*  Appends or places a digit on the display */
 - (IBAction)digitPressed:(UIButton *)sender
 {
     NSString *digit = [sender currentTitle];
     if (self.userIsInTheMiddleOfEnteringANumber) {
         self.display.text = [self.display.text stringByAppendingString:digit];
-    } else {
+    } else if (![digit isEqualToString:@"0"]) {
         self.display.text = digit;
         self.userIsInTheMiddleOfEnteringANumber = YES;
     }
@@ -50,17 +57,60 @@
 - (IBAction)enterPressed 
 {
     [self.brain pushOperand:[self.display.text doubleValue]];
+    [self updateHistoryDisplay:self.display.text];
     self.userIsInTheMiddleOfEnteringANumber = NO;
 }
 
-- (IBAction)operationPressed:(UIButton *)sender {
+/*  Sends performOperation. Updates both display and historyDisplay */
+- (IBAction)operationPressed:(UIButton *)sender
+{
     if (self.userIsInTheMiddleOfEnteringANumber) {
         [self enterPressed];
     }
     NSString *operation = [sender currentTitle];
     double result = [self.brain performOperation:operation];
+    self.historyDisplay.text = [self.historyDisplay.text stringByReplacingOccurrencesOfString:@"=" withString:@""];
+    [self updateHistoryDisplay:[operation stringByAppendingString:@" ="]];
     self.display.text = [NSString stringWithFormat:@"%g", result];
+}
 
+/*  Puts one and only one decimal onto the display */
+- (IBAction)decimalPressed
+{ 
+    if ( ([self.display.text rangeOfString:@"."]).location == NSNotFound ) {
+        self.display.text = [self.display.text stringByAppendingFormat:@"."];
+        self.userIsInTheMiddleOfEnteringANumber = YES;
+    }
+}
+
+/* Push M_PI onto the stack. Put M_PI onto the display */
+- (IBAction)piPressed
+{   
+    if (self.userIsInTheMiddleOfEnteringANumber) {
+        [self enterPressed];
+    }
+    [self.brain performOperation:@"π"];
+    self.display.text = [NSString stringWithFormat:@"%g", M_PI];
+}
+
+/* First time: Clears memory and display. A second press also clears historyDisplay */
+- (IBAction)clearPressed {
+    if ([self.historyDisplay.text hasSuffix:@"C"]) {
+        self.historyDisplay.text = @"";
+    } else {
+        [self updateHistoryDisplay:@"C"];
+    }        
+    [self.brain clear];
+    self.userIsInTheMiddleOfEnteringANumber = NO;
+    self.display.text = @"0";
+}  
+
+/* Multiplies the display by -1 and puts it onto the display */
+- (IBAction)negatePressed {
+    if (![self.display.text isEqualToString:@"0"]) {
+        self.display.text = [NSString stringWithFormat:@"%g", [self.display.text doubleValue] * -1];
+        if (!self.userIsInTheMiddleOfEnteringANumber) [self enterPressed];
+    }
 }
 
 @end
