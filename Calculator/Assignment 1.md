@@ -41,3 +41,6 @@
        *No, enter is pushed after first +*~~  
        ~~_Add enter pressed after diplay changes_~~  
        pushOperand of result in performOperation
+       
+---
+~~BUG: 3 ENTER 0 does not put zero~~
