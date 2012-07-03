@@ -10,12 +10,12 @@
 
 @interface CalculatorBrain ()
 @property (nonatomic, strong) NSMutableArray *operandStack;
+
 @end
 
 @implementation CalculatorBrain
 
 @synthesize operandStack = _operandStack;
-
 
 - (NSMutableArray *)operandStack
 {
@@ -64,9 +64,9 @@
             result = [self popOperand] / divisor;
         }
     } else if ([operation isEqualToString:@"sin"]) {
-        result = sin([self popOperand]);
+            result = sin([self popOperand]);
     } else if ([operation isEqualToString:@"cos"]) {
-        result = cos([self popOperand]);
+            result = cos([self popOperand]);
     } else if ([operation isEqualToString:@"sqrt"]){
         double radicand = [self popOperand];
         if (radicand >= 0) {
