@@ -12,6 +12,7 @@
 @interface CalculatorViewController ()
 @property (nonatomic) BOOL userIsInTheMiddleOfEnteringANumber;
 @property (nonatomic, strong) CalculatorBrain *brain;
+@property (nonatomic, readonly) NSDictionary *variableValues;
 @end
 
 @implementation CalculatorViewController
@@ -24,6 +25,14 @@
 {
     if (!_brain) _brain = [[CalculatorBrain alloc] init];
     return _brain;
+}
+
+- (NSDictionary *) variableValues {
+    NSArray *values = [NSArray arrayWithObjects:[NSNumber numberWithDouble:2],
+                                                [NSNumber numberWithDouble:3],
+                                                [NSNumber numberWithDouble:5], nil];
+    NSArray *variables = [NSArray arrayWithObjects:@"x", @"y", @"z", nil];
+    return [NSDictionary dictionaryWithObjects:values forKeys:variables];
 }
 
 - (void)updateHistoryDisplay:(NSString *)stringSentToBrain
@@ -108,11 +117,30 @@
 }  
 
 /* Multiplies the display by -1 and puts it onto the display */
-- (IBAction)negatePressed {
+- (IBAction)negatePressed
+{
     if (![self.display.text isEqualToString:@"0"]) {
         self.display.text = [NSString stringWithFormat:@"%g", [self.display.text doubleValue] * -1];
         if (!self.userIsInTheMiddleOfEnteringANumber) [self enterPressed];
     }
 }
+
+- (IBAction)variablePressed:(UIButton *)sender
+{
+    NSString *variable = [sender currentTitle];
+    
+    if (self.userIsInTheMiddleOfEnteringANumber) {
+        [self enterPressed];
+    }
+    
+    [self.brain pushVariable:variable];
+    self.display.text = variable;
+}
+
+- (IBAction)testPressed
+{
+    self.display.text = [NSString stringWithFormat:@"%g", [CalculatorBrain runProgram:self.brain.program usingVariableValues:self.variableValues]];
+}
+
 
 @end

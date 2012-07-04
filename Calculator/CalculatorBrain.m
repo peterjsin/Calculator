@@ -45,6 +45,16 @@
     return @"implement me";
 }
 
++ (BOOL)isVariable:(NSString *)testString
+{
+    BOOL result = YES;
+    NSSet *variables = [[NSSet alloc] initWithObjects:@"+", @"-", @"*", @"/", @"sin", @"cos", @"π", nil];
+    if ([variables containsObject:testString]) {
+        result =  NO;
+    }
+    return result;
+}
+
 - (void)pushOperand:(double)operand
 {
     [self.programStack addObject:[NSNumber numberWithDouble:operand]];
@@ -56,10 +66,18 @@
     return [[self class] runProgram:self.program];
 }
 
+- (void)pushVariable:(NSString *)variable
+{
+    if ([[self class] isVariable:variable]) {
+        [self.programStack addObject:variable]; 
+    }
+}
+
 + (double)popOperandOffProgramStack:(NSMutableArray *)stack
 {
     double result = 0;
     id topOfStack = [stack lastObject];
+    NSLog(@"lastObject %@", [topOfStack description]);
     if (topOfStack) {
         [stack removeLastObject];
     }
@@ -100,6 +118,28 @@
         stack = [program mutableCopy];
     }
     return [self popOperandOffProgramStack:stack];
+}
+
+/*
+ */
++ (double)runProgram:(id)program usingVariableValues:(NSDictionary *)variableValues
+{
+    NSMutableArray *stack = [[NSMutableArray alloc] init];
+    if ([program isKindOfClass:[NSArray class]]) {
+        for (int i = 0; i < [program count]; i++) {
+           
+            if ([[program objectAtIndex:i] isKindOfClass:[NSString class]]) {
+                if ([self isVariable:[program objectAtIndex:i]]) {
+                    [stack addObject:[variableValues objectForKey:[program objectAtIndex:i]]];
+                } else {
+                    [stack addObject:[program objectAtIndex:i]];
+                }
+            } else {
+                [stack addObject:[program objectAtIndex:i]];
+            }
+        }
+    }
+    return [self runProgram:stack];
 }
 
 @end
