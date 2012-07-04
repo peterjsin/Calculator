@@ -77,7 +77,6 @@
 {
     double result = 0;
     id topOfStack = [stack lastObject];
-    NSLog(@"lastObject %@", [topOfStack description]);
     if (topOfStack) {
         [stack removeLastObject];
     }
