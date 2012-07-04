@@ -37,7 +37,7 @@
     NSString *digit = [sender currentTitle];
     if (self.userIsInTheMiddleOfEnteringANumber) {
         self.display.text = [self.display.text stringByAppendingString:digit];
-    } else {
+    } else if (![self.display.text isEqualToString:@"0"] || ![digit isEqualToString:@"0"]) {
         self.display.text = digit;
         self.userIsInTheMiddleOfEnteringANumber = YES;
     }
