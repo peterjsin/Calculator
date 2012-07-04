@@ -15,11 +15,10 @@
 @end
 
 @implementation CalculatorViewController
-
-@synthesize brain = _brain;
 @synthesize display = _display;
 @synthesize historyDisplay = _historyDisplay;
 @synthesize userIsInTheMiddleOfEnteringANumber = _userIsInTheMiddleOfEnteringANumber;
+@synthesize brain = _brain;
 
 - (CalculatorBrain *) brain
 {
@@ -44,7 +43,9 @@
     }
 }
 
-- (IBAction)deletePressed {
+/*  Trims the last character off of the display unless there is only one. If only one, puts a zero */
+- (IBAction)deletePressed
+{
     int length = self.display.text.length;
     if (length > 1) {
         length--;
@@ -54,7 +55,8 @@
     }
 }
 
-- (IBAction)enterPressed 
+/*  Pushes the display onto the stack */
+- (IBAction)enterPressed
 {
     [self.brain pushOperand:[self.display.text doubleValue]];
     [self updateHistoryDisplay:self.display.text];
@@ -89,7 +91,7 @@
     if (self.userIsInTheMiddleOfEnteringANumber) {
         [self enterPressed];
     }
-    [self.brain performOperation:@"π"];
+    [self.brain pushOperand:M_PI];
     self.display.text = [NSString stringWithFormat:@"%g", M_PI];
 }
 
@@ -112,7 +114,5 @@
         if (!self.userIsInTheMiddleOfEnteringANumber) [self enterPressed];
     }
 }
-
-
 
 @end

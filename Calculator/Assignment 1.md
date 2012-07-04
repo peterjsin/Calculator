@@ -43,4 +43,4 @@
        pushOperand of result in performOperation
        
 ---
-BUG: 2 e 3 e 0 e does not put 0 on stack
+~~BUG: 3 ENTER 0 does not put zero~~
