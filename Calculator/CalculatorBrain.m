@@ -110,6 +110,25 @@
     return result;
 }
 
++ (NSSet *)variablesUsedInProgram:(id)program
+{
+    NSMutableSet *variables = [[NSMutableSet alloc] init];
+    if ([program isKindOfClass:[NSArray class]]) {
+        for (id obj in program) {
+            if ([obj isKindOfClass:[NSString class]]) {
+                if ([self isVariable:obj]) {
+                    [variables addObject:obj];
+                }
+            }
+        }
+    }
+    if ([variables count]) {
+        return variables;
+    } else {
+        return nil;
+    }
+}
+
 + (double)runProgram:(id)program
 {
     NSMutableArray *stack;
@@ -126,10 +145,13 @@
     NSMutableArray *stack = [[NSMutableArray alloc] init];
     if ([program isKindOfClass:[NSArray class]]) {
         for (int i = 0; i < [program count]; i++) {
-           
             if ([[program objectAtIndex:i] isKindOfClass:[NSString class]]) {
                 if ([self isVariable:[program objectAtIndex:i]]) {
-                    [stack addObject:[variableValues objectForKey:[program objectAtIndex:i]]];
+                    if ([variableValues objectForKey:[program objectAtIndex:i]]) {
+                        [stack addObject:[variableValues objectForKey:[program objectAtIndex:i]]];
+                    } else {
+                        [stack addObject:[NSNumber numberWithDouble:0]];
+                    }
                 } else {
                     [stack addObject:[program objectAtIndex:i]];
                 }

@@ -21,5 +21,6 @@
 + (double)runProgram:(id)program;
 + (double)runProgram:(id)program usingVariableValues:(NSDictionary *)variableValues;
 + (BOOL)isVariable:(NSString *)testString;
++ (NSSet *)variablesUsedInProgram:(id)program;
 
 @end

@@ -1,6 +1,8 @@
 # Tasks
 
 1. Accept variables as operands
+    * ~~History display doesn't work~~
+    * Fix fonts
 
 2. Implement descriptionOfProgram
 

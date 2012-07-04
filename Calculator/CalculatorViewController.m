@@ -101,6 +101,7 @@
         [self enterPressed];
     }
     [self.brain pushOperand:M_PI];
+    [self updateHistoryDisplay:@"π"];
     self.display.text = [NSString stringWithFormat:@"%g", M_PI];
 }
 
@@ -134,12 +135,14 @@
     }
     
     [self.brain pushVariable:variable];
+    [self updateHistoryDisplay:variable];
     self.display.text = variable;
 }
 
 - (IBAction)testPressed
 {
     self.display.text = [NSString stringWithFormat:@"%g", [CalculatorBrain runProgram:self.brain.program usingVariableValues:self.variableValues]];
+    
 }
 
 
