@@ -37,7 +37,8 @@
 
 - (void)updateHistoryDisplay:(NSString *)stringSentToBrain
 {
-    self.historyDisplay.text = [self.historyDisplay.text stringByAppendingFormat:@" %@", stringSentToBrain];
+//    self.historyDisplay.text = [self.historyDisplay.text stringByAppendingFormat:@" %@", stringSentToBrain];
+    self.historyDisplay.text = [CalculatorBrain descriptionOfProgram:self.brain.program];
 }
 
 /*  Appends or places a digit on the display */
@@ -100,7 +101,7 @@
     if (self.userIsInTheMiddleOfEnteringANumber) {
         [self enterPressed];
     }
-    [self.brain pushOperand:M_PI];
+    [self.brain performOperation:@"π"];
     [self updateHistoryDisplay:@"π"];
     self.display.text = [NSString stringWithFormat:@"%g", M_PI];
 }
@@ -142,6 +143,7 @@
 - (IBAction)testPressed
 {
     self.display.text = [NSString stringWithFormat:@"%g", [CalculatorBrain runProgram:self.brain.program usingVariableValues:self.variableValues]];
+//    self.historyDisplay.text = [CalculatorBrain descriptionOfProgram:self.brain.program];
     
 }
 

@@ -5,6 +5,7 @@
     * Fix fonts
 
 2. Implement descriptionOfProgram
+    * Countinue testing for edge cases
 
 3.  * historyDisplay -> descriptionOfProgram
     * variable buttons
@@ -15,3 +16,7 @@
 4. Add an undo button
 
 5. Don't crash
+
+--
+
+~~BUG: Pi displays pi's value instead of π.~~

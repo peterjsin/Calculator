@@ -7,15 +7,20 @@
 //
 
 #import "CalculatorBrain.h"
+#import "CalculatorBrainUtility.h"
 
 @interface CalculatorBrain ()
 @property (nonatomic, strong) NSMutableArray *programStack;
-
 @end
 
 @implementation CalculatorBrain
 
 @synthesize programStack = _programStack;
+
+-(id)program
+{
+    return [self.programStack copy];
+}
 
 - (NSMutableArray *)programStack
 {
@@ -25,25 +30,15 @@
     return _programStack;
 }
 
--(id)program
-{
-    return [self.programStack copy];
-}
-
 - (void)clear
 {
     [self.programStack removeAllObjects];
 }
 
-- (NSString *)description {
-    return [self.programStack description];
-}
-    
-+ (NSString *)descriptionOfProgram:(id)program
+- (NSString *)description
 {
-    //TODO
-    return @"implement me";
-}
+    return [self.programStack description];
+}    
 
 + (BOOL)isVariable:(NSString *)testString
 {
@@ -71,6 +66,67 @@
     if ([[self class] isVariable:variable]) {
         [self.programStack addObject:variable]; 
     }
+}
+
++ (NSString *)descriptionOfTopOfStack:(NSMutableArray *)stack
+{
+    NSString *result;
+    
+    // current thing
+    id topOfStack = [stack lastObject];
+    if (topOfStack) [stack removeLastObject];
+    
+    // Is a number?
+    if ([topOfStack isKindOfClass:[NSNumber class]]) {
+        result = [NSString stringWithFormat:@"%@", [topOfStack stringValue]];
+    
+    // A string
+    } else if ([topOfStack isKindOfClass:[NSString class]]) {
+        if ([CalculatorBrainUtility isSingleOperator:topOfStack]) {
+            if ([stack lastObject]) {
+                NSString *operand = [CalculatorBrain descriptionOfTopOfStack:stack];
+                if ([operand hasPrefix:@"("]) {
+                    result = [NSString stringWithFormat:@"%@%@", topOfStack, operand];
+                } else {
+                    result = [NSString stringWithFormat:@"%@(%@)", topOfStack, operand];
+                }
+            } else {
+                result = [NSString stringWithFormat:@"%@()", topOfStack];
+            }
+        } else if ([CalculatorBrainUtility isDoubleOperator:topOfStack]) {
+            NSString *secondOperand = [CalculatorBrainUtility ifNullReplaceWithQuestionMark:[CalculatorBrain descriptionOfTopOfStack:stack]];
+            NSString *firstOperand = [CalculatorBrainUtility ifNullReplaceWithQuestionMark:[CalculatorBrain descriptionOfTopOfStack:stack]];
+            if ([secondOperand hasPrefix:@"("]) {
+                result = [NSString stringWithFormat:@"%@ %@ %@", firstOperand, topOfStack, secondOperand];
+            } else if ([topOfStack isEqual:@"*"] || [topOfStack isEqual:@"/"]) {
+                result = [NSString stringWithFormat:@"%@ %@ %@", firstOperand, topOfStack, secondOperand];
+            } else {
+                result = [NSString stringWithFormat:@"(%@ %@ %@)", firstOperand, topOfStack, secondOperand]; // ((3 + 5) + 9)
+            }
+        } else if ([CalculatorBrainUtility isNoOperator:topOfStack]) {
+            result = topOfStack;
+        } else if ([CalculatorBrain isVariable:topOfStack]) {
+            result = topOfStack;
+        }
+    }
+    return result;
+}
+
++ (NSString *)descriptionOfProgram:(id)program
+{
+    NSString *result;
+    
+    if ([program isKindOfClass:[NSArray class]]) {
+        NSMutableArray *stack = [program mutableCopy];
+        result = [CalculatorBrain descriptionOfTopOfStack:stack];
+        if ([CalculatorBrainUtility beginsAndEndsWithParens:result]) {
+            result = [CalculatorBrainUtility removeFirstAndLastCharacter:result];
+        }
+        if ([stack count]) {
+            result = [NSString stringWithFormat:@"%@, %@", result, [CalculatorBrain descriptionOfProgram:stack]];
+        }
+    }
+    return result;
 }
 
 + (double)popOperandOffProgramStack:(NSMutableArray *)stack
@@ -105,6 +161,8 @@
             if (radicand >= 0) {
                 result = sqrt(radicand);
             }
+        } else if ([operation isEqualToString:@"π"]) {
+            result = M_PI;
         }
     }
     return result;
@@ -138,8 +196,6 @@
     return [self popOperandOffProgramStack:stack];
 }
 
-/*
- */
 + (double)runProgram:(id)program usingVariableValues:(NSDictionary *)variableValues
 {
     NSMutableArray *stack = [[NSMutableArray alloc] init];
