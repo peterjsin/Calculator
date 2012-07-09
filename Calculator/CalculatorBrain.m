@@ -43,7 +43,7 @@
 + (BOOL)isVariable:(NSString *)testString
 {
     BOOL result = YES;
-    NSSet *variables = [[NSSet alloc] initWithObjects:@"+", @"-", @"*", @"/", @"sin", @"cos", @"π", nil];
+    NSSet *variables = [[NSSet alloc] initWithObjects:@"+", @"−", @"×", @"÷", @"sin", @"cos", @"π", nil];
     if ([variables containsObject:testString]) {
         result =  NO;
     }
@@ -98,7 +98,7 @@
             NSString *firstOperand = [CalculatorBrainUtility ifNullReplaceWithQuestionMark:[CalculatorBrain descriptionOfTopOfStack:stack]];
             if ([secondOperand hasPrefix:@"("]) {
                 result = [NSString stringWithFormat:@"%@ %@ %@", firstOperand, topOfStack, secondOperand];
-            } else if ([topOfStack isEqual:@"*"] || [topOfStack isEqual:@"/"]) {
+            } else if ([topOfStack isEqual:@"×"] || [topOfStack isEqual:@"÷"]) {
                 result = [NSString stringWithFormat:@"%@ %@ %@", firstOperand, topOfStack, secondOperand];
             } else {
                 result = [NSString stringWithFormat:@"(%@ %@ %@)", firstOperand, topOfStack, secondOperand]; // ((3 + 5) + 9)
@@ -142,12 +142,12 @@
         NSString *operation = topOfStack;
         if ([operation        isEqualToString:@"+"]) {
             result = [self popOperandOffProgramStack:stack] + [self popOperandOffProgramStack:stack];
-        } else if ([operation isEqualToString:@"*"]) {
+        } else if ([operation isEqualToString:@"×"]) {
             result = [self popOperandOffProgramStack:stack] * [self popOperandOffProgramStack:stack];
-        } else if ([operation isEqualToString:@"-"]) {
+        } else if ([operation isEqualToString:@"−"]) {
             double subtrahend = [self popOperandOffProgramStack:stack];
             result = [self popOperandOffProgramStack:stack] - subtrahend;
-        } else if ([operation isEqualToString:@"/"]) {
+        } else if ([operation isEqualToString:@"÷"]) {
             double divisor = [self popOperandOffProgramStack:stack];
             if (divisor != 0) {
                 result = [self popOperandOffProgramStack:stack] / divisor;
@@ -156,7 +156,7 @@
             result = sin([self popOperandOffProgramStack:stack]);
         } else if ([operation isEqualToString:@"cos"]) {
             result = cos([self popOperandOffProgramStack:stack]);
-        } else if ([operation isEqualToString:@"sqrt"]){
+        } else if ([operation isEqualToString:@"√"]){
             double radicand = [self popOperandOffProgramStack:stack];
             if (radicand >= 0) {
                 result = sqrt(radicand);
@@ -217,6 +217,15 @@
         }
     }
     return [self runProgram:stack];
+}
+
+- (void)undo
+{
+    if ([self.program isKindOfClass:[NSArray class]]) {
+        if ([self.programStack lastObject]) {
+            [self.programStack removeLastObject];
+        }
+    }
 }
 
 @end

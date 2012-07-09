@@ -17,13 +17,13 @@
 
 + (BOOL)isSingleOperator:(NSString *)string
 {
-    NSSet *operators = [NSSet setWithObjects:@"sin",@"cos",@"sqrt", nil];
+    NSSet *operators = [NSSet setWithObjects:@"sin",@"cos",@"√", nil];
     return [operators containsObject:string];
 }
 
 + (BOOL)isDoubleOperator:(NSString *)string
 {
-    NSSet *operators = [NSSet setWithObjects:@"+",@"-",@"*",@"/", nil];
+    NSSet *operators = [NSSet setWithObjects:@"+",@"−",@"×",@"÷", nil];
     return [operators containsObject:string];
 }
 + (NSString *)ifNullReplaceWithQuestionMark:(NSString *)string
@@ -43,6 +43,7 @@
 {
     return ([string hasPrefix:@"("] && [string hasSuffix:@")"]);
 }
+
 
 
 @end

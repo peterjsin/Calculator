@@ -18,6 +18,7 @@
 @implementation CalculatorViewController
 @synthesize display = _display;
 @synthesize historyDisplay = _historyDisplay;
+@synthesize variableDisplay = _variableDisplay;
 @synthesize userIsInTheMiddleOfEnteringANumber = _userIsInTheMiddleOfEnteringANumber;
 @synthesize brain = _brain;
 
@@ -37,7 +38,6 @@
 
 - (void)updateHistoryDisplay:(NSString *)stringSentToBrain
 {
-//    self.historyDisplay.text = [self.historyDisplay.text stringByAppendingFormat:@" %@", stringSentToBrain];
     self.historyDisplay.text = [CalculatorBrain descriptionOfProgram:self.brain.program];
 }
 
@@ -130,11 +130,9 @@
 - (IBAction)variablePressed:(UIButton *)sender
 {
     NSString *variable = [sender currentTitle];
-    
     if (self.userIsInTheMiddleOfEnteringANumber) {
         [self enterPressed];
     }
-    
     [self.brain pushVariable:variable];
     [self updateHistoryDisplay:variable];
     self.display.text = variable;
@@ -142,10 +140,52 @@
 
 - (IBAction)testPressed
 {
-    self.display.text = [NSString stringWithFormat:@"%g", [CalculatorBrain runProgram:self.brain.program usingVariableValues:self.variableValues]];
-//    self.historyDisplay.text = [CalculatorBrain descriptionOfProgram:self.brain.program];
-    
+    self.display.text = [NSString stringWithFormat:@"%g", [CalculatorBrain runProgram:self.brain.program usingVariableValues:self.variableValues]];    
+}
+- (IBAction)nilTestPressed
+{
+    self.display.text = [NSString stringWithFormat:@"%g", [CalculatorBrain runProgram:self.brain.program usingVariableValues:nil]];
 }
 
++ (NSSet *)variablesUsedInProgram:(id)program
+{
+    NSMutableSet *variablesUsedInProgram = [[NSMutableSet alloc] init];
+    if ([program isKindOfClass:[NSArray class]]) {
+        for (id obj in program) {
+            if ([obj isKindOfClass:[NSString class]]) {
+                if ([CalculatorBrain isVariable:obj]) {
+                    [variablesUsedInProgram addObject:obj];
+                }
+            }
+        }
+    }
+    return [variablesUsedInProgram copy];
+}
 
+- (IBAction)vTestPressed
+{
+    NSSet *variablesUsedInProgram = [[self class] variablesUsedInProgram:self.brain.program];
+    NSString *result = [[NSString alloc] init];
+    if (variablesUsedInProgram) {
+        for (NSString *variable in variablesUsedInProgram) {
+            result = [result stringByAppendingFormat:@"%@ = %@    ", variable, [self.variableValues objectForKey:variable]];
+        }
+        self.variableDisplay.text = result;
+    }
+}
+
+- (IBAction)undo {
+    if (self.userIsInTheMiddleOfEnteringANumber) {
+        [self deletePressed];
+    } else {
+        [self.brain undo];
+        self.display.text = [NSString stringWithFormat:@"%g", [CalculatorBrain runProgram:self.brain.program]];
+    }
+    self.historyDisplay.text  = [CalculatorBrain descriptionOfProgram:self.brain.program];
+}
+
+- (void)viewDidUnload {
+    [self setVariableDisplay:nil];
+    [super viewDidUnload];
+}
 @end

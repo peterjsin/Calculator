@@ -22,7 +22,6 @@
 - (void)pushVariable:(NSString *)variable;
 - (double)performOperation:(NSString *)operation;
 - (void)clear;
-
-
+- (void)undo;
 
 @end
